@@ -1,20 +1,16 @@
 <?php
-// Vérification que les données sont envoyées par POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validation des champs
-    $nom = htmlspecialchars($_POST['nom']);
-    $genre = htmlspecialchars($_POST['genre']);
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : null;
-    $sujet = htmlspecialchars($_POST['sujet']);
-    $message = htmlspecialchars($_POST['message']);
+// validation des champs
+if(isset($_POST["clickinput"])){
+$formDeContact = $_POST;
+$nom = $_POST['nom'];
+$genre = $_POST['genre'];
+$email = $_POST['email'];
+$sujet = $_POST['sujet'];
+$message = $_POST['message'];
 
-    // Vérification des champs obligatoires
-    if (!$nom || !$genre || !$email || !$sujet || !$message) {
-        echo "Tous les champs doivent être remplis et valides.";
-        exit;
-    }
-
-    // Stocker les données en session pour l'afficher dans infos.php
+// vérification des champs obligatoires parie 1/2
+if ($nom && $genre && $email && $sujet && $message) {
+    // Stockage des données en session pour les afficher dans infos.php
     session_start();
     $_SESSION['user_data'] = [
         'nom' => $nom,
@@ -24,9 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'message' => $message,
     ];
 
-    // Redirection vers la page infos.php
-    header('Location: infos.php');
-    exit;
-} else {
-    echo "Aucune donnée reçue.";
+/*     $_SESSION['nom'] = $nom;
+    $_SESSION['genre'] = $genre;
+    $_SESSION['email'] = $email;
+    $_SESSION['sujet'] = $sujet;
+    $_SESSION['message'] = $message;
+ */    header('Location: infos.php');          // renvoi sur la page infos.php
+} else { // vérification des champs obligatoires parie 2/2
+    echo "Tous les champs doivent être remplis et valides.";
 }
+}
+?>
+

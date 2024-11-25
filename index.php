@@ -38,7 +38,7 @@ N'oubliez pas le CSS  -->
         Sujet : <input type = "text" name = "sujet" placeholder = "Titre" required><br><br>
         Message : <textarea name = "message" rows = "7" cols = "30"placeholder = "Noter votre message" required></textarea><br><br>
         <input type = "submit" name="clickinput"/>
-        <?php include 'traitement.php'; ?>     <!-- a metttre si action est # -->
+        <?php include 'traitement.php'; ?>     <!-- a metttre si action de form est # -->
         </form>
 
 </body>
